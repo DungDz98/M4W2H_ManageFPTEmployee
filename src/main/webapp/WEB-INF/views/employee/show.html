@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show Employee</title>
+</head>
+<body>
+<div><a href="/create-employee">Create</a></div>
+<div><a href="/sort-employee">Sort By Age</a></div>
+<div><a href="/">Default</a></div>
+<div>
+    <form action="/"><select name="branch">
+    <option th:each="b : ${branchs}" th:value="${b.id}" th:text="${b.getName()}"></option>
+        <input type="submit" value="Select">
+</select></form></div>
+<table style="border: 1px solid #000;" cellspacing="0" cellpadding="10">
+    <tr>
+        <th>Employee Code</th>
+        <th>First Name</th>
+        <th>Age</th>
+        <th>Salary</th>
+        <th>Branch</th>
+        <th colspan="3">Option</th>
+    </tr>
+    <tr th:each="e : ${employees}">
+        <td th:text="${e.getCode()}"></td>
+        <td th:text="${e.getFirstName()}"></td>
+        <td th:text="${e.getAge()}"></td>
+        <td th:text="${e.getSalary()}"></td>
+        <td th:text="${e.getBranch().getName()}"></td>
+        <td>
+            <a th:href="@{/edit-employee(id = ${e.getId()})}">Edit</a>
+        </td>
+        <td><a th:href="@{/delete-employee(id = ${e.getId()})}" onclick="return confirm('Thao tác này sẽ không thể hoàn tác, bạn chắc chứ?')">Delete</a></td>
+        <td><a th:href="@{/detail-employee(id = ${e.getId()})}">View Detail</a></td>
+    </tr>
+</table>
+</body>
+</html>

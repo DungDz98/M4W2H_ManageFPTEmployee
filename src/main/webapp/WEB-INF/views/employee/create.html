@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Employee</title>
+</head>
+<body>
+<form action="/create-employee" method="post" th:object="${employee}">
+    <fieldset>
+        <div>
+            <label>Code</label>
+            <input type="text" th:field="*{code}">
+        </div>
+        <div>
+            <label>Name</label>
+            <input type="text" th:field="*{firstName}">
+        </div>
+        <div>
+            <label>Age</label>
+            <input type="text" th:field="*{age}">
+        </div>
+        <div>
+            <label>Salary</label>
+            <input type="text" th:field="*{salary}">
+        </div>
+        <div>
+            <label>Branch</label>
+            <select th:field="*{branch}">
+                <option th:each="b : ${branchs}" th:value="${b.id}" th:text="${b.getName()}"></option>
+            </select>
+        </div>
+
+        <div><input type="submit" value="Create"></div>
+    </fieldset>
+</form>
+<div><p th:if="${message}">Thêm thành công</p></div>
+<div><a href="/">Back</a></div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show Branch</title>
+</head>
+<body>
+<div><a href="/">Manage Employee</a></div>
+<div><a href="/create-branch">Create</a></div>
+<table style="border: 1px solid #000;" cellspacing="0" cellpadding="10">
+    <tr>
+        <th>Name</th>
+        <th>Delete</th>
+    </tr>
+    <tr th:each="b : ${branchs}">
+        <td th:text="${b.getName()}"></td>
+        <td><a th:href="@{/delete-branch(id = ${b.getId()})}">Delete</a></td>
+    </tr>
+</table>
+</body>
+</html>
